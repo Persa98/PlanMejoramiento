@@ -17,16 +17,16 @@ import javax.faces.convert.Converter;
  */
 public abstract class AbstractConverter implements Converter{
     
-    protected String noMB;
+    protected String nombreMB;
     
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value){
         try{
             Integer i = Integer.valueOf(value);
-            Managedbean d = (Managedbean) context.getApplication().getELResolver().getValue(context.getELContext(), null, noMB);
+            Managedbean d = (Managedbean) context.getApplication().getELResolver().getValue(context.getELContext(), null, nombreMB);
             return d.getObeject(i);
         } catch (NumberFormatException e){
-            context.addMessage(null, new FacesMessage("Error al comvertir el objeto"));
+            context.addMessage(null, new FacesMessage("No se pudo convertir el objeto"));
             return null;
         }
     }

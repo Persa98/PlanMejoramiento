@@ -18,6 +18,6 @@ import javax.faces.convert.FacesConverter;
 public class ClienteConverter extends AbstractConverter{
     
     public ClienteConverter(){
-        this.noMB = "clienteManagedBean";
+        this.nombreMB = "clienteManagedBean";
     }
 }
