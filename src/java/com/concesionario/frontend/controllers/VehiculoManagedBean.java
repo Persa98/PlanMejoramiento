@@ -23,30 +23,27 @@ import javax.ejb.EJB;
 @SessionScoped
 public class VehiculoManagedBean implements Serializable {
 
-    /**
-     * Creates a new instance of VehiculoManagedBean
-     */
-    private Vehiculo vehi; 
+    private Vehiculo vehiculo; 
     @EJB 
     private VehiculoFacadeLocal  vhfc;
     public VehiculoManagedBean() {
     }
 
     public Vehiculo getVehi() {
-        return vehi;
+        return vehiculo;
     }
 
     public void setVehi(Vehiculo vehi) {
-        this.vehi = vehi;
+        this.vehiculo = vehi;
     }
     
     @PostConstruct
     public void init(){
-        vehi = new Vehiculo();
+        vehiculo = new Vehiculo();
     }
     
     public void registrarVehiculo(){
-        vhfc.create(vehi);
+        vhfc.create(vehiculo);
     }
     
     public void eliminarVehiculo(Vehiculo vi){
@@ -54,11 +51,11 @@ public class VehiculoManagedBean implements Serializable {
     }
     
     public void actualizarVehiculo(Vehiculo va){
-        vehi = vehi;
+        vehiculo = va;
     }
     
     public void modificarVehiclo(){
-        vhfc.edit(vehi);
+        vhfc.edit(vehiculo);
     }
     
     public List<Vehiculo> listarVehiculo(){
