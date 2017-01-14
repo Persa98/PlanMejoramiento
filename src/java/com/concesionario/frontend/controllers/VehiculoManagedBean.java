@@ -50,8 +50,9 @@ public class VehiculoManagedBean implements Serializable {
         vhfc.remove(vi);
     }
     
-    public void actualizarVehiculo(Vehiculo va){
+    public String actualizarVehiculo(Vehiculo va){
         vehiculo = va;
+        return "";
     }
     
     public void modificarVehiclo(){
@@ -60,6 +61,11 @@ public class VehiculoManagedBean implements Serializable {
     
     public List<Vehiculo> listarVehiculo(){
         return vhfc.findAll();
+    }
+    
+    @Override
+    public Vehiculo getObject(Integer i){
+        return vhfc.find(i);
     }
 }
 
