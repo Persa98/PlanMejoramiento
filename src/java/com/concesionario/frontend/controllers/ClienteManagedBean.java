@@ -7,6 +7,8 @@ package com.concesionario.frontend.controllers;
 
 import com.concesionario.backend.persistence.entities.Cliente;
 import com.concesionario.backend.persistence.facade.ClienteFacadeLocal;
+import com.concesionario.frontend.util.Managedbean;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,7 +21,7 @@ import javax.enterprise.context.Dependent;
  */
 @Named(value = "clienteManagedBean")
 @Dependent
-public class ClienteManagedBean {
+public class ClienteManagedBean implements Serializable, Managedbean <Cliente> {
 
     private Cliente cliente;
     @EJB
@@ -61,9 +63,11 @@ public class ClienteManagedBean {
     public List<Cliente> listarCliente(){
         return clfl.findAll();
     }
-    
+
     @Override
-    public Cliente geObject(Integer i){
+    public Cliente getObeject(Integer i) {
         return clfl.find(i);
     }
+    
+
 }

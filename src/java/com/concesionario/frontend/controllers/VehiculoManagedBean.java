@@ -7,6 +7,7 @@ package com.concesionario.frontend.controllers;
 
 import com.concesionario.backend.persistence.entities.Vehiculo;
 import com.concesionario.backend.persistence.facade.VehiculoFacadeLocal;
+import com.concesionario.frontend.util.Managedbean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -21,7 +22,7 @@ import javax.ejb.EJB;
  */
 @Named(value = "vehiculoManagedBean")
 @SessionScoped
-public class VehiculoManagedBean implements Serializable {
+public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo> {
 
     private Vehiculo vehiculo; 
     @EJB 
@@ -64,8 +65,8 @@ public class VehiculoManagedBean implements Serializable {
     }
     
     @Override
-    public Vehiculo getObject(Integer i){
-        return vhfc.find(i);
+    public Vehiculo getObeject(Integer i) {
+       return vhfc.find(i);
     }
 }
 
