@@ -6,23 +6,18 @@
 package com.concesionario.backend.persistence.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,7 +31,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente")
     , @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre")
     , @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono")
-    , @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
+    , @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")
+    , @NamedQuery(name = "Cliente.findByCorreo", query = "SELECT c FROM Cliente c WHERE c.correo = :correo")
+    , @NamedQuery(name = "Cliente.findByPassword", query = "SELECT c FROM Cliente c WHERE c.password = :password")})
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,8 +56,16 @@ public class Cliente implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "direccion")
     private String direccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente", fetch = FetchType.EAGER)
-    private List<Venta> ventaList;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "correo")
+    private String correo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "password")
+    private String password;
 
     public Cliente() {
     }
@@ -69,11 +74,13 @@ public class Cliente implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Integer idCliente, String nombre, int telefono, String direccion) {
+    public Cliente(Integer idCliente, String nombre, int telefono, String direccion, String correo, String password) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.correo = correo;
+        this.password = password;
     }
 
     public Integer getIdCliente() {
@@ -108,13 +115,20 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
     }
 
-    @XmlTransient
-    public List<Venta> getVentaList() {
-        return ventaList;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
