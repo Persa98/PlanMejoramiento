@@ -7,7 +7,6 @@ package com.concesionario.frontend.converters;
 
 import com.concesionario.backend.persistence.entities.Cliente;
 import com.concesionario.frontend.util.AbstractConverter;
-import java.lang.annotation.Annotation;
 import javax.faces.convert.FacesConverter;
 
 /**

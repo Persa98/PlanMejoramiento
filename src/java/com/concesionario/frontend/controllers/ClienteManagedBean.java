@@ -8,19 +8,19 @@ package com.concesionario.frontend.controllers;
 import com.concesionario.backend.persistence.entities.Cliente;
 import com.concesionario.backend.persistence.facade.ClienteFacadeLocal;
 import com.concesionario.frontend.util.Managedbean;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 
 /**
  *
  * @author Persa
  */
 @Named(value = "clienteManagedBean")
-@Dependent
+@SessionScoped
 public class ClienteManagedBean implements Serializable, Managedbean <Cliente> {
 
     private Cliente cliente;

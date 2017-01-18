@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")
     , @NamedQuery(name = "Cliente.findByCorreo", query = "SELECT c FROM Cliente c WHERE c.correo = :correo")
     , @NamedQuery(name = "Cliente.findByPassword", query = "SELECT c FROM Cliente c WHERE c.password = :password")})
-public class Cliente implements Serializable {
+public class Cliente implements Serializable, IEntitie {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -154,6 +154,11 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "com.concesionario.backend.persistence.entities.Cliente[ idCliente=" + idCliente + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return idCliente.toString();
     }
     
 }
