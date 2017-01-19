@@ -7,27 +7,27 @@ package com.concesionario.frontend.controllers;
 
 import com.concesionario.backend.persistence.entities.Cliente;
 import com.concesionario.backend.persistence.facade.ClienteFacadeLocal;
-import com.concesionario.frontend.util.Managedbean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Persa
  */
-@Named(value = "clienteManagedBean")
+@Named(value = "loginManagedBean")
 @SessionScoped
-public class ClienteManagedBean implements Serializable, Managedbean <Cliente> {
+public class LoginManagedBean implements Serializable {
 
     private Cliente cliente;
     @EJB
-    private ClienteFacadeLocal clfl;
+    private ClienteFacadeLocal clienfl;
     
-    public ClienteManagedBean() {
+    public LoginManagedBean() {
     }
 
     public Cliente getCliente() {
@@ -43,31 +43,18 @@ public class ClienteManagedBean implements Serializable, Managedbean <Cliente> {
         cliente = new Cliente();
     }
     
-    public void registrarCliente(){
-        clfl.create(cliente);
+    public String iniciarSesion(Cliente cl){
+        String redi = null;
+       try{
+           if(clienfl.iniciarSesion(cliente)!=null){
+               FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", cliente);
+               redi = "/pages/inicio?faces-redirect=true";
+           }else{
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));
+           }
+       }catch(Exception e){
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aviso Error!"));
+       }
+       return redi;
     }
-    
-    public void modificarCliente(){
-        clfl.edit(cliente);
-    }
-    
-    public void eliminarCliente(Cliente c){
-        clfl.remove(cliente);
-    }
-    
-    public String actualizarCliente(Cliente cl){
-        cliente = cl;
-        return "";
-    }
-    
-    public List<Cliente> listarCliente(){
-        return clfl.findAll();
-    }
-
-    @Override
-    public Cliente getObeject(Integer i) {
-        return clfl.find(i);
-    }
-    
-
 }

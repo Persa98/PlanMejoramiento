@@ -30,4 +30,6 @@ public interface ClienteFacadeLocal {
 
     int count();
     
+    Cliente iniciarSesion(Cliente cl) throws Exception; 
+    
 }

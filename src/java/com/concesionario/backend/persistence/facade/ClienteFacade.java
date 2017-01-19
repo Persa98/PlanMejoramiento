@@ -9,6 +9,7 @@ import com.concesionario.backend.persistence.entities.Cliente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,4 +30,19 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
         super(Cliente.class);
     }
     
+    public Cliente iniciarSesion(Cliente cl) throws Exception{
+        Cliente cliente = null;
+        TypedQuery<Cliente> query;
+        try{
+            query = em.createQuery("FROM Cliente c WHERE c.correo = ?1 and c.password = ?2", Cliente.class );
+            query.setParameter(1, cl.getCorreo());
+            query.setParameter(2, cl.getPassword());
+            if(!query.getResultList().isEmpty()){
+                cliente = query.getResultList().get(0);
+            }
+        }catch(Exception e){
+            throw e;
+        }
+        return cliente;
+    }
 }
