@@ -18,9 +18,9 @@ and open the template in the editor.
             <p:messages autoUpdate="true" showDetail="true"/>
             <h:panelGrid columns="2">
                 <h:outputLabel for="correo" value="Correo:"/>
-                <p:inputText id="correo" type="email" value="#{loginManagedBean.cliente.correo}" required="true" label="username"/>
+                <p:inputText id="correo" type="email" value="#{loginManagedBean.concesionario.correo}" required="true" label="username"/>
                 <h:outputLabel for="password" value="Password:"/>
-                <p:password id="password" value="#{loginManagedBean.cliente.password}" required="true" label="password"/>
+                <p:password id="password" value="#{loginManagedBean.concesionario.contraseña}" required="true" label="password"/>
                 
                 <p:commandButton value="Iniciar Sesion" action="#{loginManagedBean.iniciarSesion(item)}"/>
             </h:panelGrid>

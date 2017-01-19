@@ -31,9 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente")
     , @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre")
     , @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono")
-    , @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")
-    , @NamedQuery(name = "Cliente.findByCorreo", query = "SELECT c FROM Cliente c WHERE c.correo = :correo")
-    , @NamedQuery(name = "Cliente.findByPassword", query = "SELECT c FROM Cliente c WHERE c.password = :password")})
+    , @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
 public class Cliente implements Serializable, IEntitie {
 
     private static final long serialVersionUID = 1L;
@@ -56,16 +54,6 @@ public class Cliente implements Serializable, IEntitie {
     @Size(min = 1, max = 50)
     @Column(name = "direccion")
     private String direccion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "correo")
-    private String correo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "password")
-    private String password;
 
     public Cliente() {
     }
@@ -74,13 +62,11 @@ public class Cliente implements Serializable, IEntitie {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Integer idCliente, String nombre, int telefono, String direccion, String correo, String password) {
+    public Cliente(Integer idCliente, String nombre, int telefono, String direccion) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.correo = correo;
-        this.password = password;
     }
 
     public Integer getIdCliente() {
@@ -113,22 +99,6 @@ public class Cliente implements Serializable, IEntitie {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override

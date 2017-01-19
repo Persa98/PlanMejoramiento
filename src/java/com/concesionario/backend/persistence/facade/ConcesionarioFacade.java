@@ -9,6 +9,7 @@ import com.concesionario.backend.persistence.entities.Concesionario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +28,23 @@ public class ConcesionarioFacade extends AbstractFacade<Concesionario> implement
 
     public ConcesionarioFacade() {
         super(Concesionario.class);
+    }
+
+    @Override
+    public Concesionario iniciarSesion(Concesionario co) throws Exception {
+        Concesionario concesionario = null;
+        TypedQuery<Concesionario> query;
+        try{
+            query = em.createQuery("FROM Concesionario c WHERE c.correo = ?1 and c.contraseña = ?2", Concesionario.class);
+            query.setParameter(1, co.getCorreo());
+            query.setParameter(2, co.getContraseña());
+            if(!query.getResultList().isEmpty()){
+                concesionario = query.getResultList().get(0);
+            }
+        }catch (Exception e){
+            throw e;
+        }
+        return concesionario;
     }
     
 }

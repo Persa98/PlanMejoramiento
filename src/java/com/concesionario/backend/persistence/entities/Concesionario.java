@@ -6,23 +6,18 @@
 package com.concesionario.backend.persistence.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,7 +31,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Concesionario.findByIdConcesionario", query = "SELECT c FROM Concesionario c WHERE c.idConcesionario = :idConcesionario")
     , @NamedQuery(name = "Concesionario.findByNombre", query = "SELECT c FROM Concesionario c WHERE c.nombre = :nombre")
     , @NamedQuery(name = "Concesionario.findByTelefono", query = "SELECT c FROM Concesionario c WHERE c.telefono = :telefono")
-    , @NamedQuery(name = "Concesionario.findByDireccion", query = "SELECT c FROM Concesionario c WHERE c.direccion = :direccion")})
+    , @NamedQuery(name = "Concesionario.findByDireccion", query = "SELECT c FROM Concesionario c WHERE c.direccion = :direccion")
+    , @NamedQuery(name = "Concesionario.findByCorreo", query = "SELECT c FROM Concesionario c WHERE c.correo = :correo")
+    , @NamedQuery(name = "Concesionario.findByContrase\u00f1a", query = "SELECT c FROM Concesionario c WHERE c.contrase\u00f1a = :contrase\u00f1a")})
 public class Concesionario implements Serializable, IEntitie {
 
     private static final long serialVersionUID = 1L;
@@ -59,8 +56,16 @@ public class Concesionario implements Serializable, IEntitie {
     @Size(min = 1, max = 25)
     @Column(name = "direccion")
     private String direccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConcesionario", fetch = FetchType.EAGER)
-    private List<Vehiculo> vehiculoList;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "correo")
+    private String correo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "contrase\u00f1a")
+    private String contraseña;
 
     public Concesionario() {
     }
@@ -69,11 +74,13 @@ public class Concesionario implements Serializable, IEntitie {
         this.idConcesionario = idConcesionario;
     }
 
-    public Concesionario(Integer idConcesionario, String nombre, int telefono, String direccion) {
+    public Concesionario(Integer idConcesionario, String nombre, int telefono, String direccion, String correo, String contraseña) {
         this.idConcesionario = idConcesionario;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.correo = correo;
+        this.contraseña = contraseña;
     }
 
     public Integer getIdConcesionario() {
@@ -108,13 +115,20 @@ public class Concesionario implements Serializable, IEntitie {
         this.direccion = direccion;
     }
 
-    @XmlTransient
-    public List<Vehiculo> getVehiculoList() {
-        return vehiculoList;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setVehiculoList(List<Vehiculo> vehiculoList) {
-        this.vehiculoList = vehiculoList;
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     @Override

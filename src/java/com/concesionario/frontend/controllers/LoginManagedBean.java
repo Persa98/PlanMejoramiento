@@ -5,8 +5,9 @@
  */
 package com.concesionario.frontend.controllers;
 
-import com.concesionario.backend.persistence.entities.Cliente;
+import com.concesionario.backend.persistence.entities.Concesionario;
 import com.concesionario.backend.persistence.facade.ClienteFacadeLocal;
+import com.concesionario.backend.persistence.facade.ConcesionarioFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -23,38 +24,38 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class LoginManagedBean implements Serializable {
 
-    private Cliente cliente;
+    private Concesionario concesionario;
     @EJB
-    private ClienteFacadeLocal clienfl;
+    private ConcesionarioFacadeLocal cofl;
     
     public LoginManagedBean() {
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Concesionario getConcesionario() {
+        return concesionario;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setConcesionario(Concesionario concesionario) {
+        this.concesionario = concesionario;
     }
     
     @PostConstruct
     public void init(){
-        cliente = new Cliente();
+        concesionario = new Concesionario();
     }
     
-    public String iniciarSesion(Cliente cl){
+    public String iniciarSesion(Concesionario co){
         String redi = null;
-       try{
-           if(clienfl.iniciarSesion(cliente)!=null){
-               FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", cliente);
-               redi = "/pages/inicio?faces-redirect=true";
-           }else{
-               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));
-           }
-       }catch(Exception e){
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aviso Error!"));
-       }
-       return redi;
+        try {
+            if(cofl.iniciarSesion(concesionario)!=null){
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("concesionario", concesionario);
+                redi = "/pages/inicio?faces-redirect=true";
+            }else{
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso ", "Credenciales incorrectas."));
+            }
+        }catch (Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!" ));
+        }
+        return redi;
     }
 }

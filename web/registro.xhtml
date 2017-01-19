@@ -66,18 +66,6 @@ and open the template in the editor.
                         <h:outputText value="#{item.direccion}"/>
                     </p:column>
                     <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Correo"/>
-                        </f:facet>
-                        <h:outputText value="#{item.correo}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Password"/>
-                        </f:facet>
-                        <h:outputText value="#{item.password}"/>
-                    </p:column>
-                    <p:column>
                         <p:commandButton value="Editar" action="#{clienteManagedBean.actualizarCliente(item)}"/>
                         <p:commandButton value="Eliminar" actionListener="#{clienteManagedBean.eliminarCliente(item)}"/>
                     </p:column>
