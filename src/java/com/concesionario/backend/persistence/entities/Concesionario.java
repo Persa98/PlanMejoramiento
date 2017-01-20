@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Concesionario.findByTelefono", query = "SELECT c FROM Concesionario c WHERE c.telefono = :telefono")
     , @NamedQuery(name = "Concesionario.findByDireccion", query = "SELECT c FROM Concesionario c WHERE c.direccion = :direccion")
     , @NamedQuery(name = "Concesionario.findByCorreo", query = "SELECT c FROM Concesionario c WHERE c.correo = :correo")
-    , @NamedQuery(name = "Concesionario.findByContrase\u00f1a", query = "SELECT c FROM Concesionario c WHERE c.contrase\u00f1a = :contrase\u00f1a")})
+    , @NamedQuery(name = "Concesionario.findByPassword", query = "SELECT c FROM Concesionario c WHERE c.password = :password")})
 public class Concesionario implements Serializable, IEntitie {
 
     private static final long serialVersionUID = 1L;
@@ -64,8 +64,8 @@ public class Concesionario implements Serializable, IEntitie {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "contrase\u00f1a")
-    private String contraseña;
+    @Column(name = "password")
+    private String password;
 
     public Concesionario() {
     }
@@ -74,13 +74,13 @@ public class Concesionario implements Serializable, IEntitie {
         this.idConcesionario = idConcesionario;
     }
 
-    public Concesionario(Integer idConcesionario, String nombre, int telefono, String direccion, String correo, String contraseña) {
+    public Concesionario(Integer idConcesionario, String nombre, int telefono, String direccion, String correo, String password) {
         this.idConcesionario = idConcesionario;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.password = password;
     }
 
     public Integer getIdConcesionario() {
@@ -123,12 +123,12 @@ public class Concesionario implements Serializable, IEntitie {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

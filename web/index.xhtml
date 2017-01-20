@@ -20,7 +20,7 @@ and open the template in the editor.
                 <h:outputLabel for="correo" value="Correo:"/>
                 <p:inputText id="correo" type="email" value="#{loginManagedBean.concesionario.correo}" required="true" label="username"/>
                 <h:outputLabel for="password" value="Password:"/>
-                <p:password id="password" value="#{loginManagedBean.concesionario.contraseña}" required="true" label="password"/>
+                <p:password id="password" value="#{loginManagedBean.concesionario.password}" required="true" label="password"/>
                 
                 <p:commandButton value="Iniciar Sesion" action="#{loginManagedBean.iniciarSesion(item)}"/>
             </h:panelGrid>

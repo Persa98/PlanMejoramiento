@@ -35,9 +35,9 @@ public class ConcesionarioFacade extends AbstractFacade<Concesionario> implement
         Concesionario concesionario = null;
         TypedQuery<Concesionario> query;
         try{
-            query = em.createQuery("FROM Concesionario c WHERE c.correo = ?1 and c.contraseña = ?2", Concesionario.class);
+            query = em.createQuery("FROM Concesionario c WHERE c.correo = ?1 and c.password = ?2", Concesionario.class);
             query.setParameter(1, co.getCorreo());
-            query.setParameter(2, co.getContraseña());
+            query.setParameter(2, co.getPassword());
             if(!query.getResultList().isEmpty()){
                 concesionario = query.getResultList().get(0);
             }

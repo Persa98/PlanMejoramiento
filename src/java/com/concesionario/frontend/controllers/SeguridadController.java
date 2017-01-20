@@ -24,7 +24,7 @@ public class SeguridadController implements Serializable{
                 FacesContext context = FacesContext.getCurrentInstance();
                 Cliente cl = (Cliente) context.getExternalContext().getSessionMap().get("cliente");
                 if (cl == null){
-                    context.getExternalContext().redirect("../");
+                    context.getExternalContext().redirect("../permisos.xhtml");
                 }
             }catch (Exception e){
                 throw e;

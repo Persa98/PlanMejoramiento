@@ -25,15 +25,10 @@ and open the template in the editor.
                         <p:inputText id="telefono" value="#{clienteManagedBean.cliente.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
                         <p:outputLabel value="Direccion:" for="direccion" />
                         <p:inputText id="direccion" value="#{clienteManagedBean.cliente.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
-                        <p:outputLabel value="Correo:" for="correo" />
-                        <p:inputText id="correo" value="#{clienteManagedBean.cliente.correo}" title="Correo" required="true" requiredMessage="The Correo field is required."/>
-                        <p:outputLabel value="Password:" for="password" />
-                        <p:password id="password" value="#{clienteManagedBean.cliente.password}" match="password2" title="Password" required="true" requiredMessage="The Password field is required."/>
-                        <p:outputLabel value="Password:" for="password" />
-                        <p:password id="password2" title="Password" required="true" requiredMessage="The Password field is required."/>
                     </p:panelGrid>
                 </p:fieldset>
                 <p:commandButton value="Registrar" actionListener="#{clienteManagedBean.registrarCliente()}"/>
+                <p:commandButton value="Volver" action="index"/>
             </h:form></center>
         <f:view>
 
