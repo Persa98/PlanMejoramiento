@@ -12,7 +12,7 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:head>
-        <title>Registrar</title>
+        <title>Registrar Cliente</title>
     </h:head>
     <h:body>
         <center><h:form>
@@ -28,7 +28,7 @@ and open the template in the editor.
                     </p:panelGrid>
                 </p:fieldset>
                 <p:commandButton value="Registrar" actionListener="#{clienteManagedBean.registrarCliente()}"/>
-                <p:commandButton value="Volver" action="index"/>
+                <p:commandButton value="Volver" action="inicio"/>
             </h:form></center>
         <f:view>
 
@@ -61,8 +61,8 @@ and open the template in the editor.
                         <h:outputText value="#{item.direccion}"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton value="Editar" action="#{clienteManagedBean.actualizarCliente(item)}"/>
-                        <p:commandButton value="Eliminar" actionListener="#{clienteManagedBean.eliminarCliente(item)}"/>
+                        <h:commandButton value="Editar" action="#{clienteManagedBean.actualizarCliente(item)}"/>
+                        <h:commandButton value="Eliminar" actionListener="#{clienteManagedBean.eliminarCliente(item)}"/>
                     </p:column>
                 </p:dataTable>
             </h:form>

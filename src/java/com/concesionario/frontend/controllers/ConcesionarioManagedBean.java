@@ -43,8 +43,25 @@ public class ConcesionarioManagedBean implements Serializable, Managedbean <Conc
         conces = new Concesionario();
     }
     
+    public void registrarConcesionario(){
+        cofl.create(conces);
+    }
+    
+    public void modificarConcesionario(){
+        cofl.edit(conces);
+    }
+    
+    public void eliminarConcesionario(Concesionario c){
+        cofl.remove(conces);
+    }
+    
     public List<Concesionario> listarConcesionario(){
         return cofl.findAll();
+    }
+    
+    public String actualizarConcesionario(Concesionario co){
+        conces = co;
+        return "/pages/editar";
     }
 
     @Override

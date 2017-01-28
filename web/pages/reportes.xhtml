@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Reporte</title>
+    </h:head>
+    <h:body>
+            <f:view>
+                <h:form>
+                    <p:dataTable value="#{vehiculoManagedBean.listarVehiculo()}" var="ve" id="tabla">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdVehiculo"/>
+                            </f:facet>
+                            <h:outputText value="#{ve.idVehiculo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Marca"/>
+                            </f:facet>
+                            <h:outputText value="#{ve.marca}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Modelo"/>
+                            </f:facet>
+                            <h:outputText value="#{ve.modelo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Precio"/>1
+                            </f:facet>
+                            <h:outputText value="#{ve.precio}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <h:commandLink>
+                        <p:graphicImage url="../resources/img/pdf.png" width="40"/>
+                        <p:dataExporter type="pdf" target="tabla" fileName="Vehiculo" />
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage url="../resources/img/excel.jpg" width="40"/>
+                        <p:dataExporter type="csv" target="tabla" fileName="Vehiculo" />
+                    </h:commandLink>
+                </h:form>
+            </f:view>
+    </h:body>
+</html>
