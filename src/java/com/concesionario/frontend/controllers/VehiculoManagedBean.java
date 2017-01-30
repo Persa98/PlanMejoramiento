@@ -24,49 +24,93 @@ import javax.ejb.EJB;
 @SessionScoped
 public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo> {
 
-    private Vehiculo vehiculo; 
+    private Vehiculo veh; 
     @EJB 
-    private VehiculoFacadeLocal  vhfc;
+    private VehiculoFacadeLocal  vhfl;
+    private int precio;
+    private int precioe;
+    private List<Vehiculo> reco;
+    private int anio;
+    
     public VehiculoManagedBean() {
     }
 
-    public Vehiculo getVehi() {
-        return vehiculo;
+    public Vehiculo getVeh() {
+        return veh;
     }
 
-    public void setVehi(Vehiculo vehi) {
-        this.vehiculo = vehi;
+    public void setVeh(Vehiculo veh) {
+        this.veh = veh;
     }
+
+    public List<Vehiculo> getReco() {
+        return reco;
+    }
+
+    public void setReco(List<Vehiculo> reco) {
+        this.reco = reco;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
     
     @PostConstruct
     public void init(){
-        vehiculo = new Vehiculo();
+        veh = new Vehiculo();
     }
     
     public void registrarVehiculo(){
-        vhfc.create(vehiculo);
+        vhfl.create(veh);
     }
     
     public void eliminarVehiculo(Vehiculo vi){
-        vhfc.remove(vi);
+        vhfl.remove(vi);
     }
     
     public String actualizarVehiculo(Vehiculo va){
-        vehiculo = va;
-        return "";
+        veh = va;
+        return "/pages/vehiculo";
     }
     
     public void modificarVehiclo(){
-        vhfc.edit(vehiculo);
+        vhfl.edit(veh);
     }
     
     public List<Vehiculo> listarVehiculo(){
-        return vhfc.findAll();
+        return vhfl.findAll();
+    }
+    
+    public void consultarReciente(){
+        reco = vhfl.marcaReciente(anio);
     }
     
     @Override
     public Vehiculo getObeject(Integer i) {
-       return vhfc.find(i);
+       return vhfl.find(i);
     }
+    
+    public void precioSuministrado(){
+        reco = vhfl.PrecioMayor(precio);
+    }
+    
+    public void precioEconomico(){
+        reco = vhfl.PrecioMenor(precioe);
+    }
+    
+    
 }
 

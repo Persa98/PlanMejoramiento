@@ -13,60 +13,78 @@ and open the template in the editor.
       xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:head>
         <title>Registrar Cliente</title>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
     </h:head>
     <h:body>
-        <center><h:form>
-                <p:fieldset legend="Datos Personales">
-                    <p:messages autoUpdate="true"/>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel value="Nombre:" for="nombre" />
-                        <p:inputText id="nombre" value="#{clienteManagedBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
-                        <p:outputLabel value="Telefono:" for="telefono" />
-                        <p:inputText id="telefono" value="#{clienteManagedBean.cliente.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
-                        <p:outputLabel value="Direccion:" for="direccion" />
-                        <p:inputText id="direccion" value="#{clienteManagedBean.cliente.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
-                    </p:panelGrid>
-                </p:fieldset>
-                <p:commandButton value="Registrar" actionListener="#{clienteManagedBean.registrarCliente()}"/>
-                <p:commandButton value="Volver" action="inicio"/>
-            </h:form></center>
-        <f:view>
+        <h:form>
+            <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
+                <ul class="nav navbar-nav">
+                    <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
+                    <li class="le"><a class="le" href="gestionConce.xhtml">Gestionar Concesionario</a></li>
+                    <li class="le"><a class="le" href="vehiculo.xhtml">Gestionar Vehiculo</a></li>
+                    <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
+                    <li class="le"><a class="le" href="registroCliente.xhtml">Registrar cliente</a></li>
+                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="le"><a class="le" href="../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+            <br></br>
+            <center><h:form>
+                    <p:fieldset legend="Datos Personales">
+                        <p:messages autoUpdate="true"/>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Nombre:" for="nombre" />
+                            <p:inputText id="nombre" value="#{clienteManagedBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                            <p:outputLabel value="Telefono:" for="telefono" />
+                            <p:inputText id="telefono" value="#{clienteManagedBean.cliente.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
+                            <p:outputLabel value="Direccion:" for="direccion" />
+                            <p:inputText id="direccion" value="#{clienteManagedBean.cliente.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
+                        </p:panelGrid>
+                    </p:fieldset>
+                    <p:commandButton value="Registrar" actionListener="#{clienteManagedBean.registrarCliente()}"/>
+                    <p:commandButton value="Volver" action="inicio"/>
+                </h:form></center>
+            <f:view>
 
 
-            <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <p:dataTable value="#{clienteManagedBean.listarCliente()}" var="item">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="IdCliente"/>
-                        </f:facet>
-                        <h:outputText value="#{item.idCliente}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nombre"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nombre}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Telefono"/>
-                        </f:facet>
-                        <h:outputText value="#{item.telefono}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Direccion"/>
-                        </f:facet>
-                        <h:outputText value="#{item.direccion}"/>
-                    </p:column>
-                    <p:column>
-                        <h:commandButton value="Editar" action="#{clienteManagedBean.actualizarCliente(item)}"/>
-                        <h:commandButton value="Eliminar" actionListener="#{clienteManagedBean.eliminarCliente(item)}"/>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
-        </f:view>
-
+                <h:form>
+                    <h1><h:outputText value="List"/></h1>
+                    <p:dataTable value="#{clienteManagedBean.listarCliente()}" var="item">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdCliente"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCliente}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombre"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Telefono"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Direccion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccion}"/>
+                        </p:column>
+                        <p:column>
+                            <h:commandButton value="Editar" action="#{clienteManagedBean.actualizarCliente(item)}"/>
+                            <h:commandButton value="Eliminar" actionListener="#{clienteManagedBean.eliminarCliente(item)}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+        </h:form>
     </h:body>
 </html>

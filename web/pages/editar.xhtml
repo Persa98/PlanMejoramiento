@@ -11,26 +11,30 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Editar Concesionario</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Gestionar Vehiculos</title>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
     </h:head>
     <h:body>
-        <center><h:form>
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Nombre:" for="nombre" />
-                    <p:inputText id="nombre" value="#{concesionarioManagedBean.conces.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
-                    <p:outputLabel value="Telefono:" for="telefono" />
-                    <p:inputText id="telefono" value="#{concesionarioManagedBean.conces.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
-                    <p:outputLabel value="Direccion:" for="direccion" />
-                    <p:inputText id="direccion" value="#{concesionarioManagedBean.conces.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
-                    <p:outputLabel value="Correo:" for="correo" />
-                    <p:inputText id="correo" value="#{concesionarioManagedBean.conces.correo}" title="Correo" required="true" requiredMessage="The Correo field is required."/>
-                    <p:outputLabel value="Password:" for="password" />
-                    <p:password id="password" value="#{concesionarioManagedBean.conces.password}" match="password2" title="Password" required="true" requiredMessage="The Password field is required."/>
-                    <p:outputLabel value="Repetir Password:" for="password"/>
-                    <p:password id="password2" title="password" required="true" validatorMessage="Las contraseñas me lo pelam rodrigo" requiredMessage="The Password field is required."/>
-                </p:panelGrid>
-                <p:commandButton value="Editar" action="#{concesionarioManagedBean.modificarConcesionario()}"/>
-            </h:form></center>
+        <h:form>
+            <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
+                <ul class="nav navbar-nav">
+                    <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
+                    <li class="le"><a class="le" href="gestionConce.xhtml">Gestionar Concesionario</a></li>
+                    <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
+                    <li class="le"><a class="le" href="registroCliente.xhtml">Registrar cliente</a></li>
+                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="le"><a class="le" href="../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+            <br></br>
+            <center><h:form>
+                    <center><h1><h:outputText value="Gestionar Vehiculos"/></h1></center>
+                    
+                </h:form></center>
+        </h:form>
     </h:body>
 </html>

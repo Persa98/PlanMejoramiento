@@ -11,14 +11,40 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Reporte</title>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
     </h:head>
     <h:body>
+        <h:form>
+            <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
+                <ul class="nav navbar-nav">
+                    <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
+                    <li class="le"><a class="le" href="gestionConce.xhtml">Gestionar Concesionario</a></li>
+                    <li class="le"><a class="le" href="vehiculo.xhtml">Gestionar Vehiculo</a></li>
+                    <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
+                    <li class="le"><a class="le" href="registroCliente.xhtml">Registrar cliente</a></li>
+                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="le"><a class="le" href="../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+            <br></br>
             <f:view>
                 <h:form>
+                    <h:commandLink>
+                        <p:graphicImage url="../resources/img/pdf.png" width="40"/>
+                        <p:dataExporter type="pdf" target="tabla" fileName="Reporte Vehiculo" />
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage url="../resources/img/excel.jpg" width="40"/>
+                        <p:dataExporter type="csv" target="tabla" fileName="Reporte Vehiculo" />
+                    </h:commandLink>
                     <p:dataTable value="#{vehiculoManagedBean.listarVehiculo()}" var="ve" id="tabla">
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="IdVehiculo"/>
+                                <h:outputText value="Vehiculo"/>
                             </f:facet>
                             <h:outputText value="#{ve.idVehiculo}"/>
                         </p:column>
@@ -40,16 +66,16 @@ and open the template in the editor.
                             </f:facet>
                             <h:outputText value="#{ve.precio}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Concesionario"/>1
+                            </f:facet>
+                            <h:outputText value="#{ve.idConcesionario}"/>
+                            <f:selectItems value="#{concesionarioManagedBean.listarConcesionario}" var="conces" itemLabel="#{conces.nombre}"/>
+                        </p:column>
                     </p:dataTable>
-                    <h:commandLink>
-                        <p:graphicImage url="../resources/img/pdf.png" width="40"/>
-                        <p:dataExporter type="pdf" target="tabla" fileName="Vehiculo" />
-                    </h:commandLink>
-                    <h:commandLink>
-                        <p:graphicImage url="../resources/img/excel.jpg" width="40"/>
-                        <p:dataExporter type="csv" target="tabla" fileName="Vehiculo" />
-                    </h:commandLink>
                 </h:form>
             </f:view>
+        </h:form>    
     </h:body>
 </html>

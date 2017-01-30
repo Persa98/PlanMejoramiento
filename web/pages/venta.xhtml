@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <title>Venta</title>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" type="text/css" href="../resources/css/estilos.css"></link>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div id="navbar" class="navbar-collapse collapse" style="background-color: #000">
+                <ul class="nav navbar-nav">
+                    <li class="le"><a class="le" href="inicio.xhtml">Vehiculos</a></li>
+                    <li class="le"><a class="le" href="gestionConce.xhtml">Gestionar Concesionario</a></li>
+                    <li class="le"><a class="le" href="vehiculo.xhtml">Gestionar Vehiculo</a></li>
+                    <li class="le"><a class="le" href="venta.xhtml">Registrar venta</a></li>
+                    <li class="le"><a class="le" href="registroCliente.xhtml">Registrar cliente</a></li>
+                    <li class="le"><a class="le" href="reportes.xhtml">Reportes</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="le"><a class="le" href="../index.xhtml" onclick="#{loginManagedBean.cerrarSesion()}">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+            <br></br>
+            <f:view>
+                <center><h:form>
+                        <h1><h:outputText value="Comprar Vehiculo"/></h1>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Fecha:" for="fecha" />
+                            <p:inputText id="fecha" value="#{ventaManagedBean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
+                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+                            </p:inputText>
+                            <p:outputLabel value="Vehiculo:" for="idVehiculo" />
+                            <p:selectOneMenu id="idVehiculo" value="#{ventaManagedBean.venta.idVehiculo}" required="true" requiredMessage="The IdVehiculo field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="vehiculo" itemLabel="#{vehiculo.modelo}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Cliente:" for="idCliente" />
+                            <p:selectOneMenu id="idCliente" value="#{ventaManagedBean.venta.idCliente}" required="true" requiredMessage="The IdCliente field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{clienteManagedBean.listarCliente()}" var="cliente" itemLabel="#{cliente.nombre}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:commandButton value="Comprar" actionListener="#{ventaManagedBean.registrarVenta()}"/>
+                    </h:form></center>
+            </f:view>
+        </h:form>
+
+
+    </h:body>
+</html>

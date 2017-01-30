@@ -59,7 +59,7 @@ public class LoginManagedBean implements Serializable {
         return redi;
     }
     
-    public void cerrarSeion(){
+    public void cerrarSesion(){
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 }

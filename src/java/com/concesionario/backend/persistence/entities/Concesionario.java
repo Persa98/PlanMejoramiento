@@ -6,18 +6,23 @@
 package com.concesionario.backend.persistence.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,6 +40,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Concesionario.findByCorreo", query = "SELECT c FROM Concesionario c WHERE c.correo = :correo")
     , @NamedQuery(name = "Concesionario.findByPassword", query = "SELECT c FROM Concesionario c WHERE c.password = :password")})
 public class Concesionario implements Serializable, IEntitie {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConcesionario", fetch = FetchType.EAGER)
+    private List<Vehiculo> vehiculoList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -159,6 +167,15 @@ public class Concesionario implements Serializable, IEntitie {
     @Override
     public String getId() {
         return idConcesionario.toString();
+    }
+
+    @XmlTransient
+    public List<Vehiculo> getVehiculoList() {
+        return vehiculoList;
+    }
+
+    public void setVehiculoList(List<Vehiculo> vehiculoList) {
+        this.vehiculoList = vehiculoList;
     }
     
 }
