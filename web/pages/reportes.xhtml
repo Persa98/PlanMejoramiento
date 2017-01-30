@@ -62,16 +62,15 @@ and open the template in the editor.
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Precio"/>1
+                                <h:outputText value="Precio"/>
                             </f:facet>
                             <h:outputText value="#{ve.precio}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Concesionario"/>1
+                                <h:outputText value="Concesionario"/>
                             </f:facet>
-                            <h:outputText value="#{ve.idConcesionario}"/>
-                            <f:selectItems value="#{concesionarioManagedBean.listarConcesionario}" var="conces" itemLabel="#{conces.nombre}"/>
+                            <h:outputText value="#{ve.idConcesionario.nombre}"/>                            
                         </p:column>
                     </p:dataTable>
                 </h:form>

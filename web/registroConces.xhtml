@@ -34,55 +34,7 @@ and open the template in the editor.
                 <p:link value="Volver" outcome="index"/>
             </h:form></center>
             
-        <f:view>
-
-
-            <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <p:dataTable value="#{concesionarioManagedBean.listarConcesionario()}" var="item">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="IdConcesionario"/>
-                        </f:facet>
-                        <h:outputText value="#{item.idConcesionario}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nombre"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nombre}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Telefono"/>
-                        </f:facet>
-                        <h:outputText value="#{item.telefono}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Direccion"/>
-                        </f:facet>
-                        <h:outputText value="#{item.direccion}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Correo"/>
-                        </f:facet>
-                        <h:outputText value="#{item.correo}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Password"/>
-                        </f:facet>
-                        <h:outputText value="#{item.password}"/>
-                    </p:column>
-                    <p:column>
-                        <h:commandButton value="Editar" action="#{concesionarioManagedBean.actualizarConcesionario(item)}"/>
-                        <h:commandButton value="Elimina" actionListener="#{concesionarioManagedBean.eliminarConcesionario(item)}"/>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
-        </f:view>
+       
 
     </h:body>
 </html>

@@ -36,9 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Vehiculo.findByModelo", query = "SELECT v FROM Vehiculo v WHERE v.modelo = :modelo")
     , @NamedQuery(name = "Vehiculo.findByAnio", query = "SELECT v FROM Vehiculo v WHERE v.anio = :anio")
     , @NamedQuery(name = "Vehiculo.consultaAnio", query = "SELECT v FROM Vehiculo v WHERE v.anio = :anio")
-    , @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio > :precio")
-    , @NamedQuery(name = "Vehiculo.consultaPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio < :precio")
-    , @NamedQuery(name = "Vehiculo.consultaPrecioEc", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio")})
+    , @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio")
+    , @NamedQuery(name = "Vehiculo.consultaPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio > :precio")
+    , @NamedQuery(name = "Vehiculo.consultaPrecioEc", query = "SELECT v FROM Vehiculo v WHERE v.precio < :precio")})
 public class Vehiculo implements Serializable {
 
     private static final long serialVersionUID = 1L;

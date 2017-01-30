@@ -50,16 +50,9 @@ and open the template in the editor.
                 </h:form></center>
             <f:view>
 
-
+                <br/>
                 <h:form>
-                    <h1><h:outputText value="List"/></h1>
                     <p:dataTable value="#{clienteManagedBean.listarCliente()}" var="item">
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdCliente"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idCliente}"/>
-                        </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Nombre"/>

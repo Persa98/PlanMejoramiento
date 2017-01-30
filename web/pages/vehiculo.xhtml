@@ -29,7 +29,7 @@
             </div>
             <f:view>
                 <center><h:form>
-                        <h1><h:outputText value="#{vehiculoManagedBean.veh.modelo}"/></h1>
+                        <br/>
                         <p:panelGrid columns="2">
                             <p:outputLabel value="Marca:" for="marca" />
                             <p:inputText id="marca" value="#{vehiculoManagedBean.veh.marca}" title="Marca" required="true" requiredMessage="The Marca field is required."/>
@@ -84,7 +84,7 @@
                         </p:column>
                         <p:column>
                             <h:commandButton value="Editar" action="#{vehiculoManagedBean.actualizarVehiculo(item)}"/>
-                            <h:commandButton value="Eliminra" actionListener="#{vehiculoManagedBean.eliminarVehiculo(item)}"/>
+                            <h:commandButton value="Eliminar" actionListener="#{vehiculoManagedBean.eliminarVehiculo(item)}"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>

@@ -61,7 +61,7 @@ public class ConcesionarioManagedBean implements Serializable, Managedbean <Conc
     
     public String actualizarConcesionario(Concesionario co){
         conces = co;
-        return "/pages/editar";
+        return "";
     }
 
     @Override
