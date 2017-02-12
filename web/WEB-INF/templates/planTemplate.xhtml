@@ -31,25 +31,29 @@
                 </h:form>
             </ui:insert>
         </div>
-        <div>
-            <div id="left">
+        <div id="contenido">
+            <aside id="left">
                 <ui:insert name="left">
                     <p:fieldset legend="Nombre concecionario">
                         <p:outputLabel value="#{loginManagedBean.concesionario.nombre}"/>
                     </p:fieldset>
                     <h:form>
                         <p:fieldset legend="Vehículo más reciente">
-                            <h:panelGrid>
-                                <p:outputLabel value="Marca: #{vehiculoManagedBean.vehiculoMasReciente.marca}"/>
-                                <p:outputLabel value="Modelo: #{vehiculoManagedBean.vehiculoMasReciente.modelo}"/>
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Marca:"/>
+                                <p:outputLabel value="#{vehiculoManagedBean.vehiculoMasReciente.marca}"/>
+                                <p:outputLabel value="Modelo:"/>
+                                <p:outputLabel value="#{vehiculoManagedBean.vehiculoMasReciente.modelo}"/>
+                                <p:outputLabel value="Año"/>
+                                <p:outputLabel value="#{vehiculoManagedBean.vehiculoMasReciente.anio}"/>
                             </h:panelGrid>
                         </p:fieldset>
                     </h:form>
                 </ui:insert>
-            </div>
-            <div id="content" class="left_content">
+            </aside>
+            <main id="content">
                 <ui:insert name="content">Content</ui:insert>
-            </div>
+            </main>
         </div>
     </h:body>
 
