@@ -8,7 +8,7 @@ package com.concesionario.frontend.controllers;
 import com.concesionario.backend.persistence.entities.Venta;
 import com.concesionario.backend.persistence.facade.VentaFacadeLocal;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -19,7 +19,7 @@ import javax.ejb.EJB;
  * @author Persa
  */
 @Named(value = "ventaManagedBean")
-@SessionScoped
+@RequestScoped
 public class VentaManagedBean implements Serializable {
 
     private Venta venta;

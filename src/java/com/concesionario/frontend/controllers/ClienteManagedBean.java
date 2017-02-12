@@ -9,7 +9,7 @@ import com.concesionario.backend.persistence.entities.Cliente;
 import com.concesionario.backend.persistence.facade.ClienteFacadeLocal;
 import com.concesionario.frontend.util.Managedbean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -20,7 +20,7 @@ import javax.ejb.EJB;
  * @author Persa
  */
 @Named(value = "clienteManagedBean")
-@SessionScoped
+@RequestScoped
 public class ClienteManagedBean implements Serializable, Managedbean <Cliente> {
 
     private Cliente cliente;

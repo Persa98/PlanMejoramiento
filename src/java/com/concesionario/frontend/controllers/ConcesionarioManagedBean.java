@@ -77,7 +77,7 @@ public class ConcesionarioManagedBean implements Serializable, Managedbean <Conc
             FacesContext context = FacesContext.getCurrentInstance();
             if(c!=null){
                 context.getExternalContext().getSessionMap().put("usuario", c);
-                return "/protegido/concecionario/concecionario";
+                return "/protegido/concecionario/concecionario.plan?faces-redirect=true";
             }
         }catch (Exception e){
         }

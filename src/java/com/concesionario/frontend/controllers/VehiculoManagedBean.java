@@ -9,7 +9,6 @@ import com.concesionario.backend.persistence.entities.Vehiculo;
 import com.concesionario.backend.persistence.facade.VehiculoFacadeLocal;
 import com.concesionario.frontend.util.Managedbean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -72,19 +71,15 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
     }
     
   
-    public Vehiculo masReciente(){
+    public Vehiculo getVehiculoMasReciente(){
         int m = 0;
-        try{
-            
-            for(Vehiculo v: listarVehiculo()){
-                if(v.getAnio()> m){
-                    m = v.getAnio();
-                    veh = v;
-                }
+        for(Vehiculo v: listarVehiculo()){
+            if(v.getAnio()> m){
+                m = v.getAnio();
+                veh = v;
             }
-        }catch(Exception e){    
-        } 
-        return  veh;
+        }
+        return veh;
     }
     
 }

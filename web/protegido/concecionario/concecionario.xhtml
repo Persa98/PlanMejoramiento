@@ -11,6 +11,7 @@
         <ui:composition template="./../../WEB-INF/templates/planTemplate.xhtml">
 
             <ui:define name="content">
+                <p:messages autoUpdate="true" showSummary="true" showDetail="true"/>
                  <p:fieldset legend="Concecionarios">
                     <h:panelGrid columns="1">
                         <f:view>
@@ -61,7 +62,6 @@
                                 </p:dataTable>
                             </h:form>
                         </f:view>
-
                     </h:panelGrid>
                 </p:fieldset>
             </ui:define>
