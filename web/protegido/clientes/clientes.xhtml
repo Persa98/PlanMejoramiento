@@ -11,45 +11,53 @@
         <ui:composition template="./../../WEB-INF/templates/planTemplate.xhtml">
 
             <ui:define name="content">
-                 <p:fieldset legend="Clientes">
-                    <h:panelGrid columns="1">
-                        <f:view>
-                            <h:form>
-                                <p:dataTable value="#{clienteManagedBean.listarCliente()}" var="item">
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="IdCliente"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.idCliente}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Nombre"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.nombre}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Telefono"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.telefono}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Direccion"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.direccion}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Id"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.id}"/>
-                                    </p:column>
-                                </p:dataTable>
-                            </h:form>
-                        </f:view>
-
+                <p:fieldset legend="Clientes">
+                    <h:panelGrid columns="2" class="topdis">
+                        <h:form>
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Nombre:" for="nombre" />
+                                <p:inputText id="nombre" value="#{clienteManagedBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                                <p:outputLabel value="Telefono:" for="telefono" />
+                                <p:inputText id="telefono" value="#{clienteManagedBean.cliente.telefono}" title="Telefono" required="true" requiredMessage="The Telefono field is required."/>
+                                <p:outputLabel value="Direccion:" for="direccion" />
+                                <p:inputText id="direccion" value="#{clienteManagedBean.cliente.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
+                            </h:panelGrid>
+                            <p:commandButton actionListener="#{clienteManagedBean.registrarCliente()}" value="Registrar" update=":formulario"/>
+                        </h:form>
+                        <h:form id="formulario">
+                            <p:dataTable value="#{clienteManagedBean.listarCliente()}" var="item">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="IdCliente"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idCliente}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nombre"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombre}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Telefono"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.telefono}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Direccion"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.direccion}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
                     </h:panelGrid>
                 </p:fieldset>
             </ui:define>

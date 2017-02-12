@@ -15,3 +15,6 @@ h1 {
     padding: 0px;
     color: #D20005;
 }
+.topdis>tbody>tr>td {
+    vertical-align: top;
+}
