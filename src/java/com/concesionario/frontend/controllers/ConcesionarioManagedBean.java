@@ -9,18 +9,20 @@ import com.concesionario.backend.persistence.entities.Concesionario;
 import com.concesionario.backend.persistence.facade.ConcesionarioFacadeLocal;
 import com.concesionario.frontend.util.Managedbean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Persa
  */
 @Named(value = "concesionarioManagedBean")
-@SessionScoped
+@RequestScoped
 public class ConcesionarioManagedBean implements Serializable, Managedbean <Concesionario> {
 
     private Concesionario conces;
@@ -67,6 +69,21 @@ public class ConcesionarioManagedBean implements Serializable, Managedbean <Conc
     @Override
     public Concesionario getObeject(Integer i) {
         return cofl.find(i);
+    }
+    
+    public String iniciarSesion(){
+        try {
+            Concesionario c= cofl.iniciarSesion(conces);
+            FacesContext context = FacesContext.getCurrentInstance();
+            if(c!=null){
+                context.getExternalContext().getSessionMap().put("usuario", c);
+                return "/protegido/concecionario/concecionario";
+            }
+        }catch (Exception e){
+        }
+        conces = null;
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!" ));
+        return null;
     }
     
 }

@@ -7,8 +7,6 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Iniciciar Sesion</title>
@@ -18,12 +16,11 @@ and open the template in the editor.
             <p:messages autoUpdate="true" showDetail="true"/>
             <h:panelGrid columns="2">
                 <h:outputLabel for="correo" value="Correo:"/>
-                <p:inputText id="correo" type="email" value="#{loginManagedBean.concesionario.correo}" required="true" label="username"/>
+                <p:inputText id="correo" type="email" value="#{concesionarioManagedBean.conces.correo}" required="true" label="username"/>
                 <h:outputLabel for="password" value="Password:"/>
-                <p:password id="password" value="#{loginManagedBean.concesionario.password}" required="true" label="password"/>
-                
-                <p:commandButton value="Iniciar Sesion" action="#{loginManagedBean.iniciarSesion(item)}"/>
+                <p:password id="password" value="#{concesionarioManagedBean.conces.password}" required="true" label="password"/>
             </h:panelGrid>
+            <p:commandButton value="Iniciar Sesion" action="#{concesionarioManagedBean.iniciarSesion()}"/>
             <p:separator/>
             <p:link value="registrarse" outcome="registroConces"/>
         </h:form>

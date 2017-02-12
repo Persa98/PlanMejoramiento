@@ -6,14 +6,10 @@
 package com.concesionario.frontend.controllers;
 
 import com.concesionario.backend.persistence.entities.Concesionario;
-import com.concesionario.backend.persistence.facade.ClienteFacadeLocal;
-import com.concesionario.backend.persistence.facade.ConcesionarioFacadeLocal;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -25,12 +21,16 @@ import javax.faces.context.FacesContext;
 public class LoginManagedBean implements Serializable {
 
     private Concesionario concesionario;
-    @EJB
-    private ConcesionarioFacadeLocal cofl;
     
     public LoginManagedBean() {
     }
 
+    
+    @PostConstruct
+    public void init(){
+        concesionario = (Concesionario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+    }
+    
     public Concesionario getConcesionario() {
         return concesionario;
     }
@@ -39,27 +39,12 @@ public class LoginManagedBean implements Serializable {
         this.concesionario = concesionario;
     }
     
-    @PostConstruct
-    public void init(){
-        concesionario = new Concesionario();
-    }
     
-    public String iniciarSesion(Concesionario co){
-        String redi = null;
-        try {
-            if(cofl.iniciarSesion(concesionario)!=null){
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("concesionario", concesionario);
-                redi = "/pages/inicio?faces-redirect=true";
-            }else{
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso ", "Credenciales incorrectas."));
-            }
-        }catch (Exception e){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!" ));
-        }
-        return redi;
-    }
-    
-    public void cerrarSesion(){
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    public String cerrarSesion(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().remove("usuario");
+        context.getExternalContext().invalidateSession();
+        concesionario = null;
+        return "/index.plan?faces-redirect=true";
     }
 }

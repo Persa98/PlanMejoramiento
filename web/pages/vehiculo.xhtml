@@ -49,45 +49,7 @@
                     </h:form></center>
 
 
-                <h:form>
-                    <h1><h:outputText value="List"/></h1>
-                    <p:dataTable value="#{vehiculoManagedBean.listarVehiculo()}" var="item">
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="IdVehiculo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idVehiculo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Marca"/>
-                            </f:facet>
-                            <h:outputText value="#{item.marca}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Modelo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.modelo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Anio"/>
-                            </f:facet>
-                            <h:outputText value="#{item.anio}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Precio"/>
-                            </f:facet>
-                            <h:outputText value="#{item.precio}"/>
-                        </p:column>
-                        <p:column>
-                            <h:commandButton value="Editar" action="#{vehiculoManagedBean.actualizarVehiculo(item)}"/>
-                            <h:commandButton value="Eliminar" actionListener="#{vehiculoManagedBean.eliminarVehiculo(item)}"/>
-                        </p:column>
-                    </p:dataTable>
-                </h:form>
+                
             </f:view>
         </h:form>
     </h:body>

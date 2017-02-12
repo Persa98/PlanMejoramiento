@@ -18,22 +18,22 @@
 
         <div id="top" class="top">
             <ui:insert name="top">
-                <h:form>
                     <p:menubar>
-                        <p:menuitem value="Inicio"/>
-                        <p:menuitem value="Vehículos"/>
-                        <p:menuitem value="Clientes"/>
-                        <p:menuitem value="Ventas"/>
+                        <p:menuitem value="Inicio" outcome="/protegido/concecionario/concecionario"/>
+                        <p:menuitem value="Vehículos" outcome="/protegido/vehiculos/vehiculos"/>
+                        <p:menuitem value="Clientes" outcome="/protegido/clientes/clientes"/>
+                        <p:menuitem value="Ventas" outcome="/protegido/ventas/ventas"/>
                         <f:facet name="options">
-                            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                        <h:form>
+                            <p:commandButton action="#{loginManagedBean.cerrarSesion()}" value="Cerrar sesión" icon="ui-icon-extlink" />
+                        </h:form>
                         </f:facet>
                     </p:menubar> 
-                </h:form>
             </ui:insert>
         </div>
         <div>
             <div id="left">
-                <ui:insert name="left">Left</ui:insert>
+                <ui:insert name="left">#{loginManagedBean.concesionario.nombre}</ui:insert>
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>
