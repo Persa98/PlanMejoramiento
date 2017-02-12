@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 
 
 /**
@@ -21,56 +22,27 @@ import javax.ejb.EJB;
  * @author Persa
  */
 @Named(value = "vehiculoManagedBean")
-@SessionScoped
-public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo> {
+@RequestScoped
+public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> {
 
-    private Vehiculo veh; 
+    private Vehiculo veh;
     @EJB 
     private VehiculoFacadeLocal  vhfl;
-    private int precio;
-    private int precioe;
-    private List<Vehiculo> reco;
-    private int anio;
     
     public VehiculoManagedBean() {
     }
 
+    @PostConstruct
+    public void init(){
+        veh = new Vehiculo();
+    }
+    
     public Vehiculo getVeh() {
         return veh;
     }
 
     public void setVeh(Vehiculo veh) {
         this.veh = veh;
-    }
-
-    public List<Vehiculo> getReco() {
-        return reco;
-    }
-
-    public void setReco(List<Vehiculo> reco) {
-        this.reco = reco;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-    public int getAnio() {
-        return anio;
-    }
-
-    public void setAnio(int anio) {
-        this.anio = anio;
-    }
-
-    
-    @PostConstruct
-    public void init(){
-        veh = new Vehiculo();
     }
     
     public void registrarVehiculo(){
@@ -94,23 +66,25 @@ public class VehiculoManagedBean implements Serializable, Managedbean <Vehiculo>
         return vhfl.findAll();
     }
     
-    public void consultarReciente(){
-        reco = vhfl.marcaReciente(anio);
-    }
-    
     @Override
     public Vehiculo getObeject(Integer i) {
        return vhfl.find(i);
     }
     
-    public void precioSuministrado(){
-        reco = vhfl.PrecioMayor(precio);
+  
+    public Vehiculo masReciente(){
+        int m = 0;
+        try{
+            
+            for(Vehiculo v: listarVehiculo()){
+                if(v.getAnio()> m){
+                    m = v.getAnio();
+                    veh = v;
+                }
+            }
+        }catch(Exception e){    
+        } 
+        return  veh;
     }
-    
-    public void precioEconomico(){
-        reco = vhfl.PrecioMenor(precioe);
-    }
-    
     
 }
-

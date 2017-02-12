@@ -17,36 +17,8 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:messages/>
-            <p:inputText value="#{vehiculoManagedBean.precio}"/>
-            <p:column>
-                <h:commandButton value="Buscar" actionListener="#{vehiculoManagedBean.precioSuministrado()}"/>
-            </p:column>
+
         </h:form>
-        <br/>
-        <f:view>
-            <h:form>
-                <p:dataTable value="#{vehiculoManagedBean.reco}" var="item">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Marca"/>
-                        </f:facet>
-                        <h:outputText value="#{item.marca}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Modelo"/>
-                        </f:facet>
-                        <h:outputText value="#{item.modelo}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Precio"/>
-                        </f:facet>
-                        <h:outputText value="#{item.precio}"/>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
         </f:view>
     </h:body>
 </html>
