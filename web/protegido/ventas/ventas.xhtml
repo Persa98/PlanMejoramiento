@@ -13,31 +13,30 @@
             <ui:define name="content">
                 <p:fieldset legend="Ventas">
                     <h:panelGrid columns="2" class="topdis">
-                            <h:form>
-                                <p:fieldset legend="Registrar Venta">
+                        <h:form>
+                            <p:fieldset legend="Registrar Venta">
+                                <p:growl autoUpdate="true"/>
                                 <p:panelGrid columns="2">
                                     <p:outputLabel value="Marca:" for="Marca" />
                                     <p:selectOneMenu id="Marca" value="#{ventaManagedBean.venta.idVehiculo}" required="true" requiredMessage="The IdVehiculo field is required.">
-                                    <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="mar" itemLabel="#{mar.marca}"/>
-                                    </p:selectOneMenu>
-                                    <p:outputLabel value="Modelo:" for="Modelo" />
-                                    <p:selectOneMenu id="Modelo" value="#{ventaManagedBean.venta.idVehiculo}" required="true" requiredMessage="The IdVehiculo field is required.">
-                                    <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="mode" itemLabel="#{mode.modelo}"/>
+                                        <f:selectItem itemValue="#{null}" itemLabel="--seleccione--"/>
+                                        <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="mar" itemLabel="#{mar.marca}"/>
                                     </p:selectOneMenu>
                                     <p:outputLabel value="Cliente:" for="Cliente" />
                                     <p:selectOneMenu id="Cliente" value="#{ventaManagedBean.venta.idCliente}" required="true" requiredMessage="The IdCliente field is required.">
-                                    <f:selectItems value="#{clienteManagedBean.listarCliente()}" var="cli" itemLabel="#{cli.nombre}"/>
+                                        <f:selectItem itemValue="#{null}" itemLabel="--seleccione--"/>
+                                        <f:selectItems value="#{clienteManagedBean.listarCliente()}" var="cli" itemLabel="#{cli.nombre}"/>
                                     </p:selectOneMenu>
                                 </p:panelGrid>
-                                    <p:commandButton value="Registrar" actionListener="#{ventaManagedBean.registrarVenta()}" update=":formulario"/>
-                                </p:fieldset>
-                            </h:form>
-                        
+                                <p:commandButton value="Registrar" actionListener="#{ventaManagedBean.registrarVenta()}" update=":formulario"/>
+                            </p:fieldset>
+                        </h:form>
+
                         <h:form id="formulario">
-                            <p:dataTable value="#{ventaManagedBean.listarVenta()}" var="item">
+                            <p:dataTable value="#{ventaManagedBean.ventaConces()}" var="item" id="tabla">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="IdVenta"/>
+                                        <h:outputText value="Venta"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idVenta}"/>
                                 </p:column>
@@ -49,23 +48,31 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="IdVehiculo"/>
+                                        <h:outputText value="Vehículo"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idVehiculo.modelo}"/>
+                                    <h:outputText value="#{item.idVehiculo.marca} #{item.idVehiculo.modelo}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Precio"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idVehiculo.precio}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="IdCliente"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idVehiculo.marca}"/>
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="IdCliente"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idCliente}"/>
+                                    <h:outputText value="#{item.idCliente.nombre}"/>
                                 </p:column>
                             </p:dataTable>
+                            <h:commandLink class="exportar">
+                                <p:graphicImage url="../../resources/img/excel.jpg" width="40" />
+                                <p:dataExporter type="xls" target="tabla" fileName="Lista de ventas" />
+                            </h:commandLink>
+                            <h:commandLink class="exportar">
+                                <p:graphicImage url="../../resources/img/pdf.png" width="40" />
+                                <p:dataExporter type="pdf" target="tabla" fileName="Lista de ventas"/>
+                            </h:commandLink>
                         </h:form>
                     </h:panelGrid>
                 </p:fieldset>

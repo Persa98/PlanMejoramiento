@@ -10,10 +10,12 @@ import com.concesionario.backend.persistence.facade.VentaFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 
 /**
  *
@@ -26,7 +28,13 @@ public class VentaManagedBean implements Serializable {
     private Venta venta;
     @EJB
     private VentaFacadeLocal vefl;
+    @Inject
+    private LoginManagedBean concesionario;
 
+    public LoginManagedBean getConcesionario() {
+        return concesionario;
+    }
+    
     public VentaManagedBean() {
     }
 
@@ -96,5 +104,14 @@ public class VentaManagedBean implements Serializable {
             resultado = " Solo se encuantre una venta ";
         }
         return resultado;
+    }
+    public  List<Venta> ventaConces(){
+        List<Venta> l = new ArrayList<>();
+     for( Venta venta: listarVenta()){
+         if(venta.getIdVehiculo().getIdConcesionario().equals(concesionario.getConcesionario())){
+             l.add(venta);
+         }
+     }
+     return  l;
     }
 }

@@ -14,11 +14,12 @@ and open the template in the editor.
     <h:body>
         <h:form>
             <p:messages autoUpdate="true" showDetail="true"/>
+            <p:growl autoUpdate="true"/>
             <h:panelGrid columns="2">
                 <h:outputLabel for="correo" value="Correo:"/>
-                <p:inputText id="correo" type="email" value="#{concesionarioManagedBean.conces.correo}" required="true" label="username"/>
+                <p:inputText id="correo" type="email" value="#{concesionarioManagedBean.conces.correo}" required="true" label="username" requiredMessage="The Correo field is required."/>
                 <h:outputLabel for="password" value="Password:"/>
-                <p:password id="password" value="#{concesionarioManagedBean.conces.password}" required="true" label="password"/>
+                <p:password id="password" value="#{concesionarioManagedBean.conces.password}" required="true" label="password" requiredMessage="The Password field is required."/>
             </h:panelGrid>
             <p:commandButton value="Iniciar Sesion" action="#{concesionarioManagedBean.iniciarSesion()}"/>
             <p:separator/>
