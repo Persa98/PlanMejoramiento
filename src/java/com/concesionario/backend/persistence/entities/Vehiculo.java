@@ -6,7 +6,9 @@
 package com.concesionario.backend.persistence.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,10 +19,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -39,7 +43,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Vehiculo.findByPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio = :precio")
     , @NamedQuery(name = "Vehiculo.consultaPrecio", query = "SELECT v FROM Vehiculo v WHERE v.precio > :precio")
     , @NamedQuery(name = "Vehiculo.consultaPrecioEc", query = "SELECT v FROM Vehiculo v WHERE v.precio < :precio")})
-public class Vehiculo implements Serializable {
+public class Vehiculo implements Serializable, IEntitie{
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVehiculo")
+    private Collection<Venta> ventaCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -155,6 +162,20 @@ public class Vehiculo implements Serializable {
     @Override
     public String toString() {
         return "com.concesionario.backend.persistence.entities.Vehiculo[ idVehiculo=" + idVehiculo + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Venta> getVentaCollection() {
+        return ventaCollection;
+    }
+
+    public void setVentaCollection(Collection<Venta> ventaCollection) {
+        this.ventaCollection = ventaCollection;
+    }
+
+    @Override
+    public String getId() {
+        return idVehiculo.toString();
     }
     
 }

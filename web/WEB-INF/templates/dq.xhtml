@@ -24,7 +24,6 @@
                         <p:menuitem value="Vehículos" outcome="/protegido/vehiculos/vehiculos"/>
                         <p:menuitem value="Clientes" outcome="/protegido/clientes/clientes"/>
                         <p:menuitem value="Ventas" outcome="/protegido/ventas/ventas"/>
-                        <p:menuitem value="concesionario" outcome="/protegido/concecionario/concecionario"/>
                         <f:facet name="options">
                             <p:commandButton action="#{loginManagedBean.cerrarSesion()}" value="Cerrar sesión" icon="ui-icon-extlink" />
                         </f:facet>
@@ -57,11 +56,6 @@
                                 <p:outputLabel value="#{vehiculoManagedBean.menorPrecio.modelo}"/>
                                 <p:outputLabel value="Año"/>
                                 <p:outputLabel value="#{vehiculoManagedBean.menorPrecio.anio}"/>
-                            </h:panelGrid>
-                        </p:fieldset>
-                        <p:fieldset legend="Vehículo mas vendido">
-                            <h:panelGrid columns="2">
-                                <p:outputLabel value="#{ventaManagedBean.masVendido()}"/>
                             </h:panelGrid>
                         </p:fieldset>
                     </h:form>

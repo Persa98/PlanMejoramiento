@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Pablo A. Ramirez paramirez434@gmail.com
+ * @author Persa
  */
 @WebFilter(filterName = "SessionFilter", urlPatterns = {"/protegido/*"})
 public class SessionFilter implements Filter {

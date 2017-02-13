@@ -6,6 +6,7 @@
 package com.concesionario.backend.persistence.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -32,7 +35,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v")
     , @NamedQuery(name = "Venta.findByIdVenta", query = "SELECT v FROM Venta v WHERE v.idVenta = :idVenta")
     , @NamedQuery(name = "Venta.findByFecha", query = "SELECT v FROM Venta v WHERE v.fecha = :fecha")})
-public class Venta implements Serializable {
+public class Venta implements Serializable, IEntitie {
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,10 +49,6 @@ public class Venta implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_venta")
     private Integer idVenta;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "fecha")
-    private int fecha;
     @JoinColumn(name = "id_vehiculo", referencedColumnName = "id_vehiculo")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Vehiculo idVehiculo;
@@ -58,7 +63,7 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
 
-    public Venta(Integer idVenta, int fecha) {
+    public Venta(Integer idVenta, Date fecha) {
         this.idVenta = idVenta;
         this.fecha = fecha;
     }
@@ -71,13 +76,6 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
 
-    public int getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(int fecha) {
-        this.fecha = fecha;
-    }
 
     public Vehiculo getIdVehiculo() {
         return idVehiculo;
@@ -118,6 +116,19 @@ public class Venta implements Serializable {
     @Override
     public String toString() {
         return "com.concesionario.backend.persistence.entities.Venta[ idVenta=" + idVenta + " ]";
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    @Override
+    public String getId() {
+        return idVenta.toString();
     }
     
 }

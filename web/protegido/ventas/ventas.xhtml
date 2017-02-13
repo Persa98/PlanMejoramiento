@@ -11,9 +11,29 @@
         <ui:composition template="../../WEB-INF/templates/planTemplate.xhtml">
 
             <ui:define name="content">
-                <p:fieldset>
+                <p:fieldset legend="Ventas">
                     <h:panelGrid columns="2" class="topdis">
-                        <h:form>
+                            <h:form>
+                                <p:fieldset legend="Registrar Venta">
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Marca:" for="Marca" />
+                                    <p:selectOneMenu id="Marca" value="#{ventaManagedBean.venta.idVehiculo}" required="true" requiredMessage="The IdVehiculo field is required.">
+                                    <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="mar" itemLabel="#{mar.marca}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Modelo:" for="Modelo" />
+                                    <p:selectOneMenu id="Modelo" value="#{ventaManagedBean.venta.idVehiculo}" required="true" requiredMessage="The IdVehiculo field is required.">
+                                    <f:selectItems value="#{vehiculoManagedBean.listarVehiculo()}" var="mode" itemLabel="#{mode.modelo}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Cliente:" for="Cliente" />
+                                    <p:selectOneMenu id="Cliente" value="#{ventaManagedBean.venta.idCliente}" required="true" requiredMessage="The IdCliente field is required.">
+                                    <f:selectItems value="#{clienteManagedBean.listarCliente()}" var="cli" itemLabel="#{cli.nombre}"/>
+                                    </p:selectOneMenu>
+                                </p:panelGrid>
+                                    <p:commandButton value="Registrar" actionListener="#{ventaManagedBean.registrarVenta()}" update=":formulario"/>
+                                </p:fieldset>
+                            </h:form>
+                        
+                        <h:form id="formulario">
                             <p:dataTable value="#{ventaManagedBean.listarVenta()}" var="item">
                                 <p:column>
                                     <f:facet name="header">
@@ -31,7 +51,13 @@
                                     <f:facet name="header">
                                         <h:outputText value="IdVehiculo"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idVehiculo}"/>
+                                    <h:outputText value="#{item.idVehiculo.modelo}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="IdCliente"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idVehiculo.marca}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
