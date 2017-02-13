@@ -48,6 +48,16 @@
                                 <p:outputLabel value="#{vehiculoManagedBean.vehiculoMasReciente.anio}"/>
                             </h:panelGrid>
                         </p:fieldset>
+                        <p:fieldset legend="Vehículo más economico">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Marca:"/>
+                                <p:outputLabel value="#{vehiculoManagedBean.menorPrecio.marca}"/>
+                                <p:outputLabel value="Modelo:"/>
+                                <p:outputLabel value="#{vehiculoManagedBean.menorPrecio.modelo}"/>
+                                <p:outputLabel value="Año"/>
+                                <p:outputLabel value="#{vehiculoManagedBean.menorPrecio.anio}"/>
+                            </h:panelGrid>
+                        </p:fieldset>
                     </h:form>
                 </ui:insert>
             </aside>

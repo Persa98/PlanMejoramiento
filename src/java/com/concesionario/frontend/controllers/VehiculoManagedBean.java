@@ -84,6 +84,21 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
         return veh;
     }
 
+    public Vehiculo getMenorPrecio(){
+        try{
+            double z= listarVehiculo().get(0).getPrecio();
+            for(Vehiculo v: listarVehiculo()){
+                if(v.getPrecio() < z){
+                    z = v.getPrecio();
+                    veh = v;
+                }
+            }
+            return veh;
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
     public int getPrecioMayor() {
         return precioMayor;
     }
