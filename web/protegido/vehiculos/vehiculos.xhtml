@@ -33,51 +33,55 @@
                         </h:form>
                         <h:panelGrid columns="1">
                             <p:fieldset legend="Mayor precio">
-                                <f:view>
-                                    <h:form>
-                                        <h:panelGrid columns="2">
-                                            <p:outputLabel value="Precio"/>
-                                            <p:inputText value="#{vehiculoManagedBean.precioMayor}"/>
-                                            <p:commandButton value="Mayor precio" actionListener="#{vehiculoManagedBean.findByPrecioMayor()}" update=":precioFrom"/>
-                                        </h:panelGrid>
-                                    </h:form>
+                                <h:form>
+                                    <h:panelGrid columns="2">
+                                        <p:outputLabel value="Precio"/>
+                                        <p:inputText value="#{vehiculoManagedBean.precioMayor}">
+                                            <p:ajax event="keyup" update=":precioForm" listener="#{vehiculoManagedBean.findByPrecioMayor()}"/>
+                                        </p:inputText>
+                                    </h:panelGrid>
+                                </h:form>
 
-                                    <h:form id="precioForm">
-                                        <h:dataTable value="#{vehiculoManagedBean.listaPrecio}" var="item">
-                                            <h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Marca"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.marca}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Modelo"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.modelo}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Año"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.anio}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Precio"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.precio}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="IdConcesionario"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.idConcesionario.nombre}"/>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </h:form>
-                                </f:view>
+                                <h:form id="precioForm">
+                                    <p:dataTable value="#{vehiculoManagedBean.listaPrecio}" var="item">
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="IdVehiculo"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.idVehiculo}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Marca"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.marca}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Modelo"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.modelo}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Anio"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.anio}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Precio"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.precio}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="IdConcesionario"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.idConcesionario}"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:form>
 
                             </p:fieldset>
 
