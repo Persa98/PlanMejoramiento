@@ -25,6 +25,8 @@ import javax.enterprise.context.RequestScoped;
 public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> {
 
     private Vehiculo veh;
+    private int precioMayor;
+    private List<Vehiculo> listaPrecio;
     @EJB 
     private VehiculoFacadeLocal  vhfl;
     
@@ -81,5 +83,24 @@ public class VehiculoManagedBean implements Serializable, Managedbean<Vehiculo> 
         }
         return veh;
     }
-    
+
+    public int getPrecioMayor() {
+        return precioMayor;
+    }
+
+    public void setPrecioMayor(int precioMayor) {
+        this.precioMayor = precioMayor;
+    }
+
+    public List<Vehiculo> getListaPrecio() {
+        return listaPrecio;
+    }
+
+    public void setListaPrecio(List<Vehiculo> listaPrecio) {
+        this.listaPrecio = listaPrecio;
+    }
+ 
+    public void findByPrecioMayor(){
+        setListaPrecio(vhfl.findByPrecioMayor(precioMayor));
+    }
 }

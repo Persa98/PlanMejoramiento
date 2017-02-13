@@ -30,11 +30,9 @@ public interface VehiculoFacadeLocal {
 
     int count();
     
-    List<Vehiculo> marcaReciente(int año);
+    List<Vehiculo> findByPrecioMayor(int precio);
     
-    List<Vehiculo> PrecioMayor(int precio);
-    
-    List<Vehiculo> PrecioMenor(int precio);
+    List<Vehiculo> findByPrecioMenor(int precio);
     
     
 }

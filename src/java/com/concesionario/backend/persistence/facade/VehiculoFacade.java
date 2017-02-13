@@ -31,17 +31,12 @@ public class VehiculoFacade extends AbstractFacade<Vehiculo> implements Vehiculo
     }
 
     @Override
-    public List<Vehiculo> PrecioMayor(int precio) {
+    public List<Vehiculo> findByPrecioMayor(int precio) {
         return em.createNamedQuery("Vehiculo.consultaPrecio").setParameter("precio", precio).getResultList();
     }
 
     @Override
-    public List<Vehiculo> marcaReciente(int anio) {
-        return em.createNamedQuery("Vehiculo.consultaReciente").setParameter("anio", anio).getResultList();
-    }
-
-    @Override
-    public List<Vehiculo> PrecioMenor(int precio) {
+    public List<Vehiculo> findByPrecioMenor(int precio) {
         return em.createNamedQuery("Vehiculo.consultaPrecioEc").setParameter("precio", precio).getResultList();
     }
     
